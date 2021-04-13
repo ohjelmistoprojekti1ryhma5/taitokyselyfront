@@ -1,10 +1,11 @@
 
 import './App.css';
+import Radiobutton from './components/Radiobutton';
 
 function App() {
   return (
     <div className="App">
-      Lauri 
+      <Radiobutton/>
     </div>
   );
 }
