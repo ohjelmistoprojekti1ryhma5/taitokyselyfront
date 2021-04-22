@@ -43,18 +43,20 @@ const fetchAnswer = () => {
   .catch(err => console.error(err))
 };
 
-// Vastauksen post-kokeilua, ei toiminnassa
+// Vastauksen post-kokeilua, ei toiminnassa ************
 
-/*const addNewAnswer = () => {
-  fetch('https://taitokysely.herokuapp.com/answers',
+const addNewAnswer = (newAnswer) => {
+  console.log(newAnswer)
+  fetch('https://taitokysely.herokuapp.com/save',
   {
     method: 'POST',
-    body: ('newAnswer'),
+
+    body: JSON.stringify(newAnswer),
     headers: { 'Content-type' : 'application/json' }
   })
   .then(_ => fetchAnswer())
   .catch(err => console.error(err))
-}*/
+}
 
 // Testi fetchaus dataa varten *****************
 
@@ -78,7 +80,7 @@ const fetchAnswer = () => {
       </FormControl>
       <div>{answers}</div>
       <div>{question}</div>
-      {/*<AddAnswer addNewAnswer={addNewAnswer}/>*/}
+      <AddAnswer addNewAnswer={addNewAnswer} value={value}/>
     </div>
     );
   }
