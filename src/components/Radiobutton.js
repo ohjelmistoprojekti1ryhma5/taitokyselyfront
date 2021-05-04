@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
-import Button from "@material-ui/core/Button";
-import MyButton from "./MyButton";
+import React, { useState, useEffect } from 'react';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import Button from '@material-ui/core/Button';
+import MyButton from './MyButton';
 
 function Radiobutton() {
   useEffect(() => {}, []);
 
-  const [value, setValue] = React.useState("vastaus");
+  const [value, setValue] = React.useState('vastaus');
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -18,10 +18,10 @@ function Radiobutton() {
   };
 
   const addAnswer = () => {
-    fetch("https://taitokysely.herokuapp.com/answer", {
-      method: "POST",
+    fetch('https://taitokysely.herokuapp.com/answer', {
+      method: 'POST',
       body: JSON.stringify(value),
-      headers: { "Content-type": "application/json" },
+      headers: { 'Content-type': 'application/json' },
     }).catch((err) => console.error(err));
   };
 
