@@ -8,8 +8,6 @@ import Button from '@material-ui/core/Button';
 import MyButton from './MyButton';
 
 function Radiobutton() {
-    
-// const [answers, setAnswers] = React.useState('');
 
 useEffect(() => {
 }, []);
@@ -22,8 +20,7 @@ const handleChange = (event) => {
 };
 
 const addAnswer = () => {
-  // console.log(newAnswer)
-  fetch('http://localhost:8080/answers',
+  fetch('https://taitokysely.herokuapp.com/answer',
   {
     method: 'POST',
     body: JSON.stringify(value),
@@ -31,9 +28,7 @@ const addAnswer = () => {
   })
   .catch(err => console.error(err))
 }
-/*
 
- */
   return (
     <div>
       <FormControl component="fieldset">
