@@ -5,6 +5,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import MyButton from './MyButton';
+import RadiobuttonSex from './RadiobuttonSex';
 
 function Radiobutton() {
 
@@ -34,6 +35,8 @@ function Radiobutton() {
             <FormControlLabel value="En" control={<Radio />} label="En" />
           </RadioGroup>
         </FormControl>
+
+        <RadiobuttonSex/>
         <MyButton addAnswer={addAnswer} value={value}/>
       </div>
       );
