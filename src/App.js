@@ -9,6 +9,7 @@ import Radiobutton from './components/Radiobutton';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Textfield from './components/Textfield';
+import Question from './components/Question';
 
 function App() {
 
@@ -23,11 +24,11 @@ function App() {
       
       <Router>
         <div>
-          <Link to="/">Radiobutton</Link>{' '}
-          <Link to="/textfield/">Textfield</Link>{' '}
+          <Link to="/">Kysely</Link>{' '}
+          <Link to="/textfield/">Anna palautetta!</Link>{' '}
 
           <Switch>
-            <Route exact path="/" component={Radiobutton} />
+            <Route exact path="/" component={Question} />
             <Route exact path="/textfield/" component={Textfield} />
             <Route render={() => <h1>Page not found</h1>} />
           </Switch>
