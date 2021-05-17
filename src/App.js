@@ -5,12 +5,10 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Radiobutton from './components/Radiobutton';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Textfield from './components/Textfield';
-import Button from '@material-ui/core/Button';
+import Questionradio from './components/Questionradio';
+import Question from './components/Question';
 
 function App() {
 
@@ -23,14 +21,14 @@ function App() {
         </Typography>
       </AppBar>
       
-      <Router>
+      <Router >
         <div>
-          <Link to="/">Radiobutton</Link>{' '}
-          <Link to="/textfield/">Textfield</Link>{' '}
+          <Link to="/question">Textfield</Link>{' '}
+          <Link to="/questionradio">Radio</Link>
 
           <Switch>
-            <Route exact path="/" component={Radiobutton} />
-            <Route exact path="/textfield/" component={Textfield} />
+            <Route exact path="/question" component={Question} />
+            <Route exact path="/questionradio" component={Questionradio} />
             <Route render={() => <h1>Page not found</h1>} />
           </Switch>
         </div>

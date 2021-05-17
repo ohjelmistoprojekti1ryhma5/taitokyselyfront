@@ -1,25 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-
+import MyButton from './MyButton';
 
 function Textfield() {
     
     const [text, setText] = useState('');
-    const [answer, setAnswer] = useState('');
 
-    const handleChange = () => {
-        setAnswer([text, ...answer]);
-        console.log(text);
+    const addAnswer = () => {
+      fetch('https://taitokysely.herokuapp.com/answer',
+      {
+        method: 'POST',
+        body: JSON.stringify(text),
+        headers: { 'Content-type' : 'application/json' }
+      })
+      .catch(err => console.error(err))
     }
 
     return (
         <form>
-            <h2>Anna palautetta!</h2>
+            
             <TextField label="Vastaa tähän" value={text} onChange={e => setText(e.target.value)} />
-            <Button onClick={handleChange} variant="contained" color="primary">
-                Tallenna
-            </Button>
+            <MyButton addAnswer={addAnswer} value={text}/>
         </form>
       );
 }
