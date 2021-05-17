@@ -7,7 +7,6 @@ function Textfield({ onChange, answerValue }) {
   return (
     <form>
       <TextField label="Vastaa tähän" value={answerValue} onChange={event => onChange(event.target.value)} />
-      {/* <MyButton addAnswer={addAnswer} value={text} /> */}
     </form>
   );
 }

@@ -20,8 +20,8 @@ function Question() {
 
   function Joku(questionId, answerValue) {
     const existingAnswerForQuestionIndex = answers.findIndex((answer) => answer.questionId === questionId)
-    let newAnswers = [...answers] // copies the existing answers array
-
+    let newAnswers = [...answers] // Kopioidaan edelliset vastaukset
+    
     if (existingAnswerForQuestionIndex !== -1) {
       newAnswers[existingAnswerForQuestionIndex].answer = answerValue
     } else {
@@ -34,24 +34,12 @@ function Question() {
     setAnswers(newAnswers)
   }
 
-  /* 
-  {    {
-        "answerName": "Vastaus1",
-        "question": {
-            "questionId": 1,
-        }
-    answer: 
-    question: {
-      questionId: xx
-    }
-  }
-  */
-
   const addAnswer = () => {
     fetch('http://localhost:8080/answers',
       {
         method: 'POST',
         body: JSON.stringify(answers.map(({ answer, questionId }) => ({
+          // Muotoillaan lähetettävä JSON
           answerName: answer,
           question: {
             questionId
