@@ -28,7 +28,7 @@ function Radiobutton() {
     return (
       <div>
         <FormControl component="fieldset">
-          <FormLabel component="legend">Piditkö kyselystä?</FormLabel>
+          <FormLabel component="legend"></FormLabel>
           <RadioGroup aria-label="vastaus" name="vastaus" value={value} onChange={handleChange}>
             <FormControlLabel value="Kyllä" control={<Radio />} label="Kyllä" />
             <FormControlLabel value="En" control={<Radio />} label="En" />

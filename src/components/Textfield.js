@@ -18,7 +18,7 @@ function Textfield() {
 
     return (
         <form>
-            <h2>Anna palautetta!</h2>
+            
             <TextField label="Vastaa tähän" value={text} onChange={e => setText(e.target.value)} />
             <MyButton addAnswer={addAnswer} value={text}/>
         </form>
