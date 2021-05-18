@@ -1,78 +1,75 @@
 import React, { useState, useEffect } from 'react';
-import { AgGridReact } from 'ag-grid-react';
-import { Button, TextField } from '@material-ui/core';
-
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-material.css';
-import Radiobutton from './Radiobutton';
 import Textfield from './Textfield';
 import MyButton from './MyButton';
+
 function Question() {
- 
- const [question, setQuestion] = useState([]);
-    
-    useEffect(() => {
+
+  const [questions, setQuestions] = useState([]);
+  const [answers, setAnswers] = useState([]);
+
+  useEffect(() => {
     fetchQuestions();
-    }, []);
+  }, []);
 
-    /*
-    const inputChanged = (event) => {
-        setQuestion({...question, [event.target.name]: event.target.value});
-    } */
- 
- const fetchQuestions = () => {
-    fetch('https://taitokysely.herokuapp.com/questions')
-    .then(response => response.json())
-    .then(data => setQuestion(data))
-    .catch(err => console.error(err))
-    console.log(question)
- }
- 
- const addAnswer = () => {
-    fetch('http://localhost:8080/answer', {
-    method: 'POST',
-    body: JSON.toString(),
-    headers: { 'Content-type': 'application/json' }
-    })
-    //.then(_ => fetchQuestions())
-    .catch(err => console.error(err))
- } 
+  const fetchQuestions = () => {
+    fetch('http://localhost:8080/survey/15')
+      .then(response => response.json())
+      .then(data => setQuestions(data))
+      .catch(err => console.error(err))
+  }
 
-//  const addAnswer = () => {
-//   fetch('https://taitokysely.herokuapp.com/answer',
-//   {
-//     method: 'POST',
-//     body: JSON.stringify(gender),
-//     headers: { 'Content-type' : 'application/json' }
-//   })
-//   .catch(err => console.error(err))
-// }
-/* <TextField  type="text" onChange={e => e.target.value}/>
-                    <Button onClick={addAnswer}>Lähetä vastaus </Button> */
+  function Joku(questionId, answerValue) {
+    const existingAnswerForQuestionIndex = answers.findIndex((answer) => answer.questionId === questionId)
+    let newAnswers = [...answers] // Kopioidaan edelliset vastaukset
+    
+    if (existingAnswerForQuestionIndex !== -1) {
+      newAnswers[existingAnswerForQuestionIndex].answer = answerValue
+    } else {
+      newAnswers = [...newAnswers, {
+        questionId,
+        answer: answerValue,
+      }]
+    }
 
- return (
- <div>
-            
-            
-            
-            <table align="center">
-            <tbody>
-              
-              {
-                question.map(questions =>
-                  <tr key={questions.questionId}>
-                    <td>{questions.questionName} <Textfield/></td>
-                    
-                  
-                  </tr>)
-                  
-              }
-              
-            </tbody>
-          </table>
- 
- </div>
- );
+    setAnswers(newAnswers)
+  }
+
+  const addAnswer = () => {
+    fetch('http://localhost:8080/answers',
+      {
+        method: 'POST',
+        body: JSON.stringify(answers.map(({ answer, questionId }) => ({
+          // Muotoillaan lähetettävä JSON
+          answerName: answer,
+          question: {
+            questionId
+          }
+        }))),
+        headers: { 'Content-type': 'application/json' }
+      })
+      .catch(err => console.error(err))
+  }
+
+  return (
+    <div>
+      <table align="center">
+        <tbody>
+          {
+            questions.map(question => {
+              const answerObject = answers.find((answer) => answer.questionId === question.questionId)
+              const answerValueString = answerObject ? answerObject.answer : ''
+              return (
+                <tr key={question.questionId}>
+                  <td>{question.questionName} <Textfield value={answerValueString} onChange={(answerValue) => Joku(question.questionId, answerValue)} /></td>
+                </tr>
+              )
+            })
+          }
+          <MyButton addAnswer={addAnswer} />
+        </tbody>
+      </table>
+    </div>
+  );
 }
- 
+
 export default Question;
