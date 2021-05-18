@@ -16,7 +16,7 @@ function Radiobutton() {
   };
 
   const addAnswer = () => {
-    fetch('http://localhost:8080/answer',
+    fetch('https://taitokysely.herokuapp.com/answer',
     {
       method: 'POST',
       body: JSON.stringify(value),

@@ -12,7 +12,7 @@ function Question() {
   }, []);
 
   const fetchQuestions = () => {
-    fetch('http://localhost:8080/survey/15')
+    fetch('https://taitokysely.herokuapp.com/survey/57')
       .then(response => response.json())
       .then(data => setQuestions(data))
       .catch(err => console.error(err))
@@ -35,7 +35,7 @@ function Question() {
   }
 
   const addAnswer = () => {
-    fetch('http://localhost:8080/answers',
+    fetch('https://taitokysely.herokuapp.com/answers',
       {
         method: 'POST',
         body: JSON.stringify(answers.map(({ answer, questionId }) => ({
