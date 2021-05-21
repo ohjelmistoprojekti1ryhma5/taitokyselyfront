@@ -10,7 +10,7 @@ function Questionradio() {
     }, []);
  
     const fetchQuestions = () => {
-        fetch('https://taitokysely.herokuapp.com/questions')
+        fetch('https://taitokysely.herokuapp.com/survey/57')
         .then(response => response.json())
         .then(data => setQuestion(data))
         .catch(err => console.error(err))

@@ -23,12 +23,12 @@ function App() {
       
       <Router >
         <div>
-          <Link to="/question">Textfield</Link>{' '}
-          <Link to="/questionradio">Radio</Link>
+          <Link to="/">Textfield</Link>{' '}
+          <Link to="/radio">Radio</Link>
 
           <Switch>
-            <Route exact path="/question" component={Question} />
-            <Route exact path="/questionradio" component={Questionradio} />
+            <Route exact path="/" component={Question} />
+            <Route exact path="/radio" component={Questionradio} />
             <Route render={() => <h1>Page not found</h1>} />
           </Switch>
         </div>
